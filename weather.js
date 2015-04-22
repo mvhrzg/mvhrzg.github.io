@@ -2,7 +2,8 @@
 	"use strict";
 	
 	var main = function() {
-		var url = 'http://5dayweather.org/api.php?city=asheville,nc';
+		var url = "<script src='http://5dayweather.org/api.php?city=asheville,nc'></script>"
+//'http://5dayweather.org/api.php?city=asheville,nc',
 
 		$.getJSON(url, function(weatherResponse) {
 			var $rideTable = $('<table id="weather">');
@@ -44,12 +45,13 @@
                         case "date": $item.append("Today's date: ", response["day"], ", ", month + " ", day); break;
                 }
                 $rideTable.append($item);
-            }                                     
+            }
 			$('main').append($rideTable);
             
             
 		});
 	};
+   
 	
 	$(document).ready(main);
 }());
