@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Asheville Cycling Resources</title>
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            
+			<p><img src="bicycle.png">&nbsp;&nbsp;Asheville Cycling Resources&nbsp;&nbsp;<img src="bicyclereverse.png"></p>
+		</header>
+        <main>
+            <div id="locations">
+                <table>
+                    <tr><td><img id="icon" src='http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|0|FF6666|12|_|1' alt="icon1">
+                        <b>Youngblood Bycicles</b></td></tr>
+                    <tr><td>233 Merrimon Ave, Asheville, NC</td></tr>
+                    <tr><td>Hours: Mon-Fri: 10-6, Sat: 10-5</td></tr>
+                    <tr><td>(828) 251-4686</td></tr>
+                    <tr><td><a href="http://youngbloodbikes.com">youngbloodbikes.com</a></td></tr>
+                    
+                    <tr><td><br><img id="icon" src='http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|0|FF6666|12|_|2' alt="icon2">
+                        <b>Hearn’s Cycling & Fitness</b></td></tr>
+                    <tr><td>28 Asheland Ave, Asheville, NC</td></tr>
+                    <tr><td>Hours: Mon-Fri: 9-5</td></tr>
+                    <tr><td>(828) 253-4800</td></tr>
+                    <tr><td><a href="http://www.yelp.com/biz/hearns-cycling-and-fitness-asheville">yelp.com</a></td></tr>
+                    
+                    <tr><td><br><img id="icon" src='http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|0|FF6666|12|_|3' alt="icon3">
+                        <b>Beer City Bicycles</b></td></tr>
+                    <tr><td>144 Biltmore Ave, Asheville, NC</td></tr>
+                    <tr><td>Hours: Mon-Sat: 10-7, Sun: 12-5</td></tr>
+                    <tr><td>(828) 575-BIKE</td></tr>
+                    <tr><td><a href="http://www.beercitybicycles.com/">beercitybicycles.com</a> </td></tr>
+                    
+                    <tr><td><br><img id="icon" src='http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|0|FF6666|12|_|4' alt="icon4">
+                         <b>Liberty Bicycles</b>
+                    <tr><td>144 Biltmore Ave, Asheville, NC</td></tr>
+                    <tr><td>Hours: Mon-Fri 10-7, Sat 10-6, Sun 12-5</td></tr>
+                    <tr><td>(828) 274-BIKE</td></tr>
+                    <tr><td><a href="http://www.libertybikes.com//">libertybikes.com</a></td></tr>
+                    
+                    <tr><td><br><img id="icon" src='http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|0|FF6666|12|_|5' alt="icon5"
+                        <b>Motion Makers Bicycles</b></td></tr>
+                    <tr><td>878 Brevard Rd, Asheville, NC</td></tr>
+                    <tr><td>Hours: Mon-Fri 10-7, Sat 9-5, Sun 12-5</td></tr>
+                    <tr><td>(828) 633-2227</td></tr>
+                    <tr><td><a href="http://www.motionmakers.com//">motionmakers.com</a></td></tr>
+                </table>
+            </div>
+        </main>
+        <div id="control">
+            <b>Start: </b>
+            <select id="start" onchange="calcRoute();">
+                <option value="start">Your Location</option>
+            </select>
+            <b>End: </b>
+            <select id="end" onchange="calcRoute();">
+              <option value="233 Merrimon Ave, Asheville, NC">Youngblood Bicycles</option>
+              <option value="28 Asheland Ave, Asheville, NC">Hearn's Cycling and Fitness</option>
+              <option value="144 Biltmore Ave, Asheville, NC">Beer City Bicycles</option>
+              <option value="878 Brevard Rd Ave, Asheville, NC">Motion Makers</option>
+              <option value="1378 Hendersonville Rd, Asheville, NC">Liberty Bikes</option>
+            </select>
+        </div>
+        <div id="map-canvas"></div>
+        <div id="directions-panel"></div>
+        <footer>
+            <div id="apis">
+                <a href="https://developers.google.com">&nabla;Google API&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a href="http://www.5dayweather.org/api-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nabla;5DayWeather API</a>
+            </div>
+        </footer>
+
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <script src="google.js"></script>
+        <script src="weather.js"></script>
+    </body>
+</html>
