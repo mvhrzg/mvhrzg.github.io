@@ -10,7 +10,7 @@ html, body{
 
 #map-canvas{
     position: relative;
-    top: -320px;
+    top: -50px;/*-320*/
     height: 400px;
     width: 800px;
     margin: 20px;
@@ -31,7 +31,7 @@ html, body{
 
 #directions-panel {
     position: relative;
-    top:-320px;
+    top:0px;
     height: 50%;
     float: right;
     width: 800px;
