@@ -7,25 +7,49 @@
 		$.getJSON(url, function(weather) {
 			var $rideTable = $('<table id="weather">');
 			var response = weather.data;
-            var datestr;
-            var month;
-            var day;
+            //weather vars
+            var datestr,
+                maxstr,
+                minstr,
+                month,
+                day,
+                maxTemp,
+                minTemp;
+            
+            //condition vars
+            var feelstr,
+                feel, 
+                temp,
+                humidity,
+                precipitation,
+                windSpeed,
+                condition; //nested
+                
+                
             console.log(response);
             
 			for (var prop in response) {
                 
-//                if(response['weather'][prop] == 'date'){
-//                    datestr = response['weather'][prop] = "DATE";
-//                    console.log("DATE", datestr);
-//                }
-                
+                console.log("%s %s", prop, response[prop][0]);
                 var $item = $('<tr>');
                 var $itemProp = $('<td>').text(prop);
                 var $itemVal = $('<td>').text(response[prop]);
-                if(response[prop][0] == 'current_condition'){
-                    $item = response[prop][0];
+
+                if(prop == 'weather'){
+                    datestr = JSON.stringify(response[prop][0].date);
+                    month = datestr.substring(6, 8);
+                    day = datestr.substring(9, 11);
+                    maxstr = JSON.stringify(response[prop][0].maxtempF);
+                    maxTemp = maxstr.substring(1, 3);
+                    minstr = JSON.stringify(response[prop][0].mintempF);
+                    minTemp = minstr.substring(1, 3);
                 }
-                console.log("%s:", prop, response[prop][0]);//returns items in nested arrays inside each prop
+                
+                if(prop == 'current_condition'){
+                    feelstr = JSON.stringify(response[prop][0].FeelsLikeF);
+                    feel = feelstr.substring(1, 3);
+                    
+                }
                 
                 switch(month){
                         case "01" : month = "January"; break;
@@ -43,11 +67,10 @@
                 }
 
                 switch(prop){
-                        case "temperature": $item.append("Temperature: ", response["temperature"], " °F"); break;
-                        case "humidity": $item.append("Humidity: ", response["humidity"], "%"); break;
-                        case "skytext": $item.append("Weather: ", response["skytext"]); break;
-                        case "wind": $item.append("Wind: ", response["wind"], " mph"); break;
-                        case "date": $item.append("Today's date: ", response["day"], ", ", month + " ", day); break;
+                        case "weather": $item.append("Today is ", month, "&nbsp;", day); 
+                                        $item.append("<tr>", "Max Temp: ", maxTemp, "°F"); 
+                                        $item.append("<tr>", "Min Temp: ", minTemp, "°F"); //break;
+                        case "current_condition": $item.append("<tr>", "Real Feel: ", feel, "°F"); break;
                 }
             }
             $rideTable.append($item);
