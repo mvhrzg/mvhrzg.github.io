@@ -2,7 +2,8 @@
 	"use strict";
 	
 	var main = function() {
-		var url = "http://5dayweather.org/api.php?city=asheville,nc?jsoncallback=?";
+		var url = 'http://api.worldweatheronline.com/free/v2/weather.ashx?key=8d31ac78b510a273fcb9f5c0b5fd9&num_of_days=1&q=35.5800,-82.5558&format=json'
+        //"http://5dayweather.org/api.php?city=asheville,nc?jsoncallback=?";
         
 		$.getJSON(url, function(weatherResponse) {
 			var $rideTable = $('<table id="weather">');
@@ -10,6 +11,7 @@
             var datestr;
             var month;
             var day;
+            console.log(response);
             
 			for (var prop in response) {
 				var $item = $('<tr>');
@@ -43,8 +45,26 @@
                         case "wind": $item.append("Wind: ", response["wind"], " mph"); break;
                         case "date": $item.append("Today's date: ", response["day"], ", ", month + " ", day); break;
                 }
-                $rideTable.append($item);
             }
+            $rideTable.append($item);
+
+        
+        
+//        var obj;
+//        $.ajax({
+//            url : url,
+//            dataType : 'html',
+//            success: function (data) {
+//                console.log("here");
+//                obj = $.parseHTML(data);
+//                console.log("there");
+//                console.log($.parseJSON(obj));
+//            },
+//            error: function () { console.log("Error reading weatherResponse");}
+//        });
+
+        
+        
 			$('main').append($rideTable);
 		});
 	};
