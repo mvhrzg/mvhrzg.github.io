@@ -18,19 +18,19 @@
             
             //condition vars
             var feelstr,
-                feel, 
+                feel,
+                tempstr,
                 temp,
+                humstr,
                 humidity,
+                precstr,
                 precipitation,
+                windstr,
                 windSpeed,
-                condition; //nested
+                condstr,    //nested
+                condition;
                 
-                
-            console.log(response);
-            
 			for (var prop in response) {
-                
-                console.log("%s %s", prop, response[prop][0]);
                 var $item = $('<tr>');
                 var $itemProp = $('<td>').text(prop);
                 var $itemVal = $('<td>').text(response[prop]);
@@ -48,7 +48,17 @@
                 if(prop == 'current_condition'){
                     feelstr = JSON.stringify(response[prop][0].FeelsLikeF);
                     feel = feelstr.substring(1, 3);
-                    
+                    tempstr = JSON.stringify(response[prop][0].temp_F);
+                    temp = tempstr.substring(1, 3);
+                    precstr = JSON.stringify(response[prop][0].precipMM);
+                    precipitation = precstr.substring(1, 4);
+                    humstr = JSON.stringify(response[prop][0].humidity);
+                    humidity = humstr.substr(1, 2);
+                    windstr = JSON.stringify(response[prop][0].windspeedMiles);
+                    windSpeed = windstr.substring(1, 3);
+                    condstr = JSON.stringify(response[prop][0].weatherDesc[0].value);
+                    condition = condstr.replace(/"/g,""); 
+
                 }
                 
                 switch(month){
@@ -65,14 +75,20 @@
                         case "11" : month = "November"; break;
                         case "12" : month = "December"; break;
                 }
-
-                switch(prop){
-                        case "weather": $item.append("Today is ", month, "&nbsp;", day); 
-                                        $item.append("<tr>", "Max Temp: ", maxTemp, "°F"); 
-                                        $item.append("<tr>", "Min Temp: ", minTemp, "°F"); //break;
-                        case "current_condition": $item.append("<tr>", "Real Feel: ", feel, "°F"); break;
-                }
+                $item.append("Today's Date: ", month, "&nbsp;", day); 
+                $item.append("<tr>", "Condition: ", condition);
+                $item.append("<tr>", "Temperature: ", temp, "°F");
+                $item.append("<tr>", "Real Feel: ", feel, "°F");
+                $item.append("<tr>", "Low: ", minTemp, "°F"); 
+                $item.append("<tr>", "High: ", maxTemp, "°F");
+                $item.append("<tr>", "Precipitation: ", precipitation, " mm");
+                $item.append("<tr>", "Humidity: ", humidity, "%");
+                $item.append("<tr>", "Wind: ", windSpeed, "mph");
+                
+                
             }
+                        
+                                                    
             $rideTable.append($item);
 			$('main').append($rideTable);
 		});
