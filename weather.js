@@ -3,25 +3,30 @@
 	
 	var main = function() {
 		var url = 'http://api.worldweatheronline.com/free/v2/weather.ashx?key=8d31ac78b510a273fcb9f5c0b5fd9&num_of_days=1&q=35.5800,-82.5558&format=json'
-        //"http://5dayweather.org/api.php?city=asheville,nc?jsoncallback=?";
         
-		$.getJSON(url, function(weatherResponse) {
+		$.getJSON(url, function(weather) {
 			var $rideTable = $('<table id="weather">');
-			var response = weatherResponse.data;
+			var response = weather.data;
             var datestr;
             var month;
             var day;
             console.log(response);
             
 			for (var prop in response) {
-				var $item = $('<tr>');
-				var $itemProp = $('<td>').text(prop);
-				var $itemVal = $('<td>').text(response[prop]);
-                if(prop == "date"){
-                    datestr = JSON.stringify(response[prop]);
-                    month = datestr.substring(6, 8);
-                    day = datestr.substring(9, 11);
+                
+//                if(response['weather'][prop] == 'date'){
+//                    datestr = response['weather'][prop] = "DATE";
+//                    console.log("DATE", datestr);
+//                }
+                
+                var $item = $('<tr>');
+                var $itemProp = $('<td>').text(prop);
+                var $itemVal = $('<td>').text(response[prop]);
+                if(response[prop][0] == 'current_condition'){
+                    $item = response[prop][0];
                 }
+                console.log("%s:", prop, response[prop][0]);//returns items in nested arrays inside each prop
+                
                 switch(month){
                         case "01" : month = "January"; break;
                         case "02" : month = "February"; break;
@@ -36,9 +41,8 @@
                         case "11" : month = "November"; break;
                         case "12" : month = "December"; break;
                 }
-                
+
                 switch(prop){
-                        case "location": break;
                         case "temperature": $item.append("Temperature: ", response["temperature"], " °F"); break;
                         case "humidity": $item.append("Humidity: ", response["humidity"], "%"); break;
                         case "skytext": $item.append("Weather: ", response["skytext"]); break;
@@ -47,24 +51,6 @@
                 }
             }
             $rideTable.append($item);
-
-        
-        
-//        var obj;
-//        $.ajax({
-//            url : url,
-//            dataType : 'html',
-//            success: function (data) {
-//                console.log("here");
-//                obj = $.parseHTML(data);
-//                console.log("there");
-//                console.log($.parseJSON(obj));
-//            },
-//            error: function () { console.log("Error reading weatherResponse");}
-//        });
-
-        
-        
 			$('main').append($rideTable);
 		});
 	};
