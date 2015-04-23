@@ -75,14 +75,16 @@
                         case "11" : month = "November"; break;
                         case "12" : month = "December"; break;
                 }
-                $item.append("Today's Date: ", month, "&nbsp;", day); 
-                $item.append("<tr>", "Condition: ", condition);
-                $item.append("<tr>", "Temperature: ", temp, "°F");
-                $item.append("<tr>", "Real Feel: ", feel, "°F");
-                $item.append("<tr>", "Low: ", minTemp, "°F"); 
-                $item.append("<tr>", "High: ", maxTemp, "°F");
-                $item.append("<tr>", "Precipitation: ", precipitation, " mm");
-                $item.append("<tr>", "Humidity: ", humidity, "%");
+                
+                //append items to table
+                $item.append("Today's Date: ", month, "&nbsp;", day), 
+                $item.append("<tr>", "Condition: ", condition),
+                $item.append("<tr>", "Temperature: ", temp, "°F"),
+                $item.append("<tr>", "Real Feel: ", feel, "°F"),
+                $item.append("<tr>", "Low: ", minTemp, "°F"),
+                $item.append("<tr>", "High: ", maxTemp, "°F"),
+                $item.append("<tr>", "Precipitation: ", precipitation, " mm"),
+                $item.append("<tr>", "Humidity: ", humidity, "%"),
                 $item.append("<tr>", "Wind: ", windSpeed, "mph");
                 
                 
