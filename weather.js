@@ -55,7 +55,7 @@
                     humstr = JSON.stringify(response[prop][0].humidity);
                     humidity = humstr.substr(1, 2);
                     windstr = JSON.stringify(response[prop][0].windspeedMiles);
-                    windSpeed = windstr.substring(1, 3);
+                    windSpeed = windstr.replace(/"/g,"");
                     condstr = JSON.stringify(response[prop][0].weatherDesc[0].value);
                     condition = condstr.replace(/"/g,""); 
 
